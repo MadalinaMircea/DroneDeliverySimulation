@@ -1,0 +1,10 @@
+D:\Projects\DroneDeliverySystem\DroneDeliverySystem\bin\Debug\DroneDeliverySystem.exe.config
+D:\Projects\DroneDeliverySystem\DroneDeliverySystem\bin\Debug\DroneDeliverySystem.exe
+D:\Projects\DroneDeliverySystem\DroneDeliverySystem\bin\Debug\DroneDeliverySystem.pdb
+D:\Projects\DroneDeliverySystem\DroneDeliverySystem\obj\Debug\DroneDeliverySystem.Form1.resources
+D:\Projects\DroneDeliverySystem\DroneDeliverySystem\obj\Debug\DroneDeliverySystem.Properties.Resources.resources
+D:\Projects\DroneDeliverySystem\DroneDeliverySystem\obj\Debug\DroneDeliverySystem.csproj.GenerateResource.cache
+D:\Projects\DroneDeliverySystem\DroneDeliverySystem\obj\Debug\DroneDeliverySystem.csproj.CoreCompileInputs.cache
+D:\Projects\DroneDeliverySystem\DroneDeliverySystem\obj\Debug\DroneDeliverySystem.exe
+D:\Projects\DroneDeliverySystem\DroneDeliverySystem\obj\Debug\DroneDeliverySystem.pdb
+D:\Projects\DroneDeliverySystem\DroneDeliverySystem\obj\Debug\DroneDeliverySystem.csprojAssemblyReference.cache
