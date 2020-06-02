@@ -340,18 +340,32 @@ namespace DroneDeliverySystem.Agents
         }
         public override void Stop()
         {
-            //stops the agent
-            movingThread.Join();
-            messageHandlerThread.Join();
+            StopThreads();
             base.Stop();
         }
 
         public override void Start()
         {
-            //starts the agent's mover thread
+            StartThreads();
+            base.Start();
+        }
+
+        private void StartThreads()
+        {
             movingThread.Start();
             messageHandlerThread.Start();
-            base.Start();
+        }
+
+        private void CreateThreads()
+        {
+            movingThread = new Thread(new ThreadStart(MoveDrone));
+            messageHandlerThread = new Thread(new ThreadStart(MessageHandler));
+        }
+
+        private void StopThreads()
+        {
+            movingThread.Join();
+            messageHandlerThread.Join();
         }
 
         public override string ToString()
@@ -370,9 +384,13 @@ namespace DroneDeliverySystem.Agents
 
             GlobalInformation.WriteToConsole($"Created {ToString()} at position {Position}");
 
-            movingThread = new Thread(new ThreadStart(MoveDrone));
+            CreateThreads();
+        }
 
-            messageHandlerThread = new Thread(new ThreadStart(MessageHandler));
+        public override void Pause()
+        {
+            StopThreads();
+            CreateThreads();
         }
     }
 }

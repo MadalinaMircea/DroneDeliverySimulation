@@ -121,6 +121,7 @@ namespace DroneDeliverySystem
             PauseButton.Enabled = true;
             StopButton.Enabled = true;
             StartButton.Text = "Start";
+            PauseButton.Text = "Pause";
             GlobalInformation.StartAll();
         }
 
@@ -135,7 +136,7 @@ namespace DroneDeliverySystem
 
         private void StopButton_Click(object sender, EventArgs e)
         {
-            StartButton.Enabled = true;
+            StartButton.Enabled = false;
             StopButton.Enabled = false;
             PauseButton.Enabled = false;
             GlobalInformation.StopAll();

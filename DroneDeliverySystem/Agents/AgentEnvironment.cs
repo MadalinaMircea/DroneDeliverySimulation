@@ -76,7 +76,7 @@ namespace DroneDeliverySystem.Agents
         {
             string n = name != "" ? name : globalAgentId.ToString();
 
-            Agent a = agentFactory.CreateAgent(agentType, GetNextId(), n, limits.GeneratePosition(rnd));
+            Agent a = agentFactory.CreateAgent(agentType, GetNextId(), n, limits.GeneratePosition(rnd), rnd);
             a.CurrentEnvironment = this;
             agents.Add(a);
             return a;

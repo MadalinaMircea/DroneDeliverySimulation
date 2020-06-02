@@ -10,14 +10,12 @@ namespace DroneDeliverySystem.Agents
 {
     public class AgentFactory
     {
-        Random rnd = new Random();
-
-        public Agent CreateAgent(AgentType agentType, int id, string name, Position position)
+        public Agent CreateAgent(AgentType agentType, int id, string name, Position position, Random rnd)
         {
             switch(agentType)
             {
                 case AgentType.DRONE:
-                    return CreateDrone(id, name, position);
+                    return CreateDrone(id, name, position, rnd);
                 case AgentType.PRODUCER:
                     return CreateProducer(id, name, position);
             }
@@ -25,7 +23,7 @@ namespace DroneDeliverySystem.Agents
             return null;
         }
 
-        private Agent CreateDrone(int id, string name, Position position)
+        private Agent CreateDrone(int id, string name, Position position, Random rnd)
         {
             int move = rnd.Next(0, 100);
             Movement movement = new MixedMovement();

@@ -117,7 +117,6 @@
             this.PauseButton.TabIndex = 10;
             this.PauseButton.Text = "Pause";
             this.PauseButton.UseVisualStyleBackColor = false;
-            this.PauseButton.Visible = false;
             this.PauseButton.Click += new System.EventHandler(this.PauseButton_Click);
             // 
             // StopButton
