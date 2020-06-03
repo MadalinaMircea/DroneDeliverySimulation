@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DroneDeliverySystem.Utils.Containers
+﻿namespace DroneDeliverySystem.Utils.Containers
 {
     class IncreasingPriorityQueue<T> : PriorityQueue<T>
     {
@@ -12,9 +6,9 @@ namespace DroneDeliverySystem.Utils.Containers
         {
             int i = base.Add(t);
 
-            for (int j = i; j < elements.Count; j++)
+            for (int j = i + 1; j < elements.Count; j++)
             {
-                elements[i].Priority++;
+                elements[j].Priority++;
             }
 
             return i;

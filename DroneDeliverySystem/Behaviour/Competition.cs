@@ -1,10 +1,6 @@
 ﻿using DroneDeliverySystem.Utils.Containers;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Security.Policy;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace DroneDeliverySystem.Behaviour
 {
@@ -79,10 +75,5 @@ namespace DroneDeliverySystem.Behaviour
 
             return result.ToString();
         }
-
-        //public Agent GetWinner()
-        //{
-        //    return AgentPoints.Peek().Element;
-        //}
     }
 }

@@ -4,11 +4,7 @@ using DroneDeliverySystem.Messaging;
 using DroneDeliverySystem.Utils;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace DroneDeliverySystem.Agents
 {
@@ -43,11 +39,6 @@ namespace DroneDeliverySystem.Agents
             GlobalInformation.SetWinner(competition.GetWinners());
             Monitor.Exit(competition);
         }
-
-        //public Agent GetWinner()
-        //{
-        //    return competition.GetWinner();
-        //}
 
         public AgentMessage GetNextMessage(int agentId)
         {
@@ -95,7 +86,6 @@ namespace DroneDeliverySystem.Agents
             Agent a = agentFactory.CreateAgent(agentType, GetNextId(), n, limits.GeneratePosition(rnd), rnd);
             a.CurrentEnvironment = this;
             agents.Add(a);
-            //competition.AddAgent(a);
             return a;
         }
 
@@ -106,14 +96,6 @@ namespace DroneDeliverySystem.Agents
                 a.Start();
             }
         }
-
-        //public void PauseAll()
-        //{
-        //    foreach(Agent a in agents)
-        //    {
-        //        a.Pause();
-        //    }
-        //}
 
         public void StopAll()
         {

@@ -33,7 +33,6 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.background = new System.Windows.Forms.PictureBox();
             this.StartButton = new System.Windows.Forms.Button();
-            this.StopButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.WinnerLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -97,45 +96,33 @@
             // StartButton
             // 
             this.StartButton.BackColor = System.Drawing.Color.MediumSpringGreen;
-            this.StartButton.Font = new System.Drawing.Font("Berlin Sans FB", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.StartButton.Location = new System.Drawing.Point(1145, 131);
+            this.StartButton.Font = new System.Drawing.Font("Berlin Sans FB", 24F);
+            this.StartButton.Location = new System.Drawing.Point(1145, 193);
             this.StartButton.Name = "StartButton";
-            this.StartButton.Size = new System.Drawing.Size(165, 47);
+            this.StartButton.Size = new System.Drawing.Size(165, 107);
             this.StartButton.TabIndex = 9;
             this.StartButton.Text = "Start";
             this.StartButton.UseVisualStyleBackColor = false;
             this.StartButton.Click += new System.EventHandler(this.StartButton_Click);
             // 
-            // StopButton
-            // 
-            this.StopButton.BackColor = System.Drawing.Color.Salmon;
-            this.StopButton.Font = new System.Drawing.Font("Berlin Sans FB", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.StopButton.Location = new System.Drawing.Point(1145, 391);
-            this.StopButton.Name = "StopButton";
-            this.StopButton.Size = new System.Drawing.Size(165, 47);
-            this.StopButton.TabIndex = 11;
-            this.StopButton.Text = "Stop";
-            this.StopButton.UseVisualStyleBackColor = false;
-            this.StopButton.Click += new System.EventHandler(this.StopButton_Click);
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Berlin Sans FB", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(1168, 529);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 22.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(1145, 424);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(119, 30);
+            this.label1.Size = new System.Drawing.Size(169, 44);
             this.label1.TabIndex = 12;
             this.label1.Text = "Winning:";
             // 
             // WinnerLabel
             // 
             this.WinnerLabel.AutoSize = true;
-            this.WinnerLabel.Font = new System.Drawing.Font("Berlin Sans FB", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.WinnerLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 22.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.WinnerLabel.ForeColor = System.Drawing.Color.MediumPurple;
-            this.WinnerLabel.Location = new System.Drawing.Point(1181, 580);
+            this.WinnerLabel.Location = new System.Drawing.Point(1172, 486);
             this.WinnerLabel.Name = "WinnerLabel";
-            this.WinnerLabel.Size = new System.Drawing.Size(90, 37);
+            this.WinnerLabel.Size = new System.Drawing.Size(110, 44);
             this.WinnerLabel.TabIndex = 13;
             this.WinnerLabel.Text = "None";
             // 
@@ -146,7 +133,6 @@
             this.ClientSize = new System.Drawing.Size(1322, 724);
             this.Controls.Add(this.WinnerLabel);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.StopButton);
             this.Controls.Add(this.StartButton);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.pictureBox1);
@@ -168,7 +154,6 @@
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button StartButton;
-        private System.Windows.Forms.Button StopButton;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label WinnerLabel;
     }

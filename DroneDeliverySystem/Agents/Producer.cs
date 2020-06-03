@@ -24,10 +24,8 @@ namespace DroneDeliverySystem.Agents
         private Thread creatorThread = null;
 
         private List<Drone> observers = new List<Drone>();
-        public void Changed(bool newPackage, Producer producer, Package package)
+        public void Changed(Producer producer, Package package)
         {
-            int newPack = newPackage ? 1 : 0;
-            //string content = $"1-{newPack}-{producer.position.X},{producer.position.Y}-{producer.ID}-{package.ID}";
             string content = $"{producer.position.X},{producer.position.Y}-{producer.ID}-{package.ID}";
             foreach (Drone o in observers)
             {
@@ -52,7 +50,7 @@ namespace DroneDeliverySystem.Agents
             this.position = position;
             //this.form = form;
             this.ID = id;
-            lastPackageCreated = DateTime.Now;
+            lastPackageCreated = DateTime.MinValue;
             Name = name;
             CreateThread();
         }
@@ -65,7 +63,6 @@ namespace DroneDeliverySystem.Agents
         private void CreateThread()
         {
             creatorThread = new Thread(new ThreadStart(CreatorThreadRun));
-            //creatorThread.Start();
         }
 
         private void CreatorThreadRun()
@@ -134,7 +131,7 @@ namespace DroneDeliverySystem.Agents
 
             GlobalInformation.AddPackage(this, package);
 
-            Changed(true, this, package);
+            Changed(this, package);
 
             lastPackageCreated = DateTime.Now;
 
@@ -160,27 +157,12 @@ namespace DroneDeliverySystem.Agents
 
         private void StartThreads()
         {
-            //isAlive = true;
             creatorThread.Start();
         }
 
         private void StopThreads()
         {
-            //isAlive = false;
             creatorThread.Join();
         }
-
-        //public override void Pause()
-        //{
-        //    StopThreads();
-        //    CreateThread();
-        //    base.Pause();
-        //}
-
-        //public override void Resume()
-        //{
-        //    StartThreads();
-        //    base.Resume();
-        //}
     }
 }

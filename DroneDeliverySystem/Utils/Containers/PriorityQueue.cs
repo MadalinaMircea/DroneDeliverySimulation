@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace DroneDeliverySystem.Utils.Containers
 {
@@ -44,11 +40,11 @@ namespace DroneDeliverySystem.Utils.Containers
             return p;
         }
 
-        public void Remove(PriorityPair<T> t)
+        public void Remove(T t)
         {
             for (int i = 0; i < elements.Count; i++)
             {
-                if (elements[i].Element.Equals(t.Element))
+                if (elements[i].Element.Equals(t))
                 {
                     elements.RemoveAt(i);
                     break;

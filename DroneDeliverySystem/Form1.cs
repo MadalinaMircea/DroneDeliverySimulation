@@ -1,14 +1,11 @@
 ﻿using DroneDeliverySystem.Agents;
 using DroneDeliverySystem.DisplayUtils;
 using DroneDeliverySystem.Global;
+using DroneDeliverySystem.Utils.Containers;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
+using System.Diagnostics;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace DroneDeliverySystem
@@ -23,20 +20,19 @@ namespace DroneDeliverySystem
             GlobalInformation.SetConsole(new DisplayConsole(console));
             GlobalInformation.CreateEnvironment();
             List<Producer> producers = GlobalInformation.CreateProducers(this);
-            //GlobalInformation.StartAgents(producers);
             List<Drone> drones = GlobalInformation.CreateDrones();
             AddIcons(drones);
             AddTitles(drones);
             GlobalInformation.AddDroneObservables(drones, producers);
-            //GlobalInformation.StartAgents(drones);
 
             AddDisplayLine("Console");
             AddDisplayLine("Hello world");
 
-            StopButton.Enabled = false;
             StartButton.Enabled = true;
 
             Invalidate();
+
+            //testPriorityQueue();
         }
 
         private void AddIcons(List<Drone> drones)
@@ -102,11 +98,6 @@ namespace DroneDeliverySystem
 
         }
 
-        //private void background_Click(object sender, EventArgs e)
-        //{
-        //    GlobalInformation.CreateRandomPackage();
-        //}
-
         private void console_TextChanged(object sender, EventArgs e)
         {
             // set the current caret position to the end
@@ -118,16 +109,78 @@ namespace DroneDeliverySystem
         private void StartButton_Click(object sender, EventArgs e)
         {
             StartButton.Enabled = false;
-            StopButton.Enabled = true;
             StartButton.Text = "Start";
             GlobalInformation.StartAll();
         }
 
-        private void StopButton_Click(object sender, EventArgs e)
+        private void testPriorityQueue()
         {
-            StartButton.Enabled = false;
-            StopButton.Enabled = false;
-            GlobalInformation.StopAll();
+            IncreasingPriorityQueue<int> pq = new IncreasingPriorityQueue<int>();
+            Debug.Assert(pq.Count() == 0);
+
+            pq.Add(new PriorityPair<int>(1, 1));
+            Debug.Assert(pq.Count() == 1);
+            Debug.Assert(pq.Peek().Element == 1);
+            Debug.Assert(pq.Peek().Priority == 1);
+
+            pq.Add(new PriorityPair<int>(2, 5));
+            Debug.Assert(pq.Count() == 2);
+            Debug.Assert(pq.Peek().Element == 2);
+            Debug.Assert(pq.Peek().Priority == 5);
+
+            pq.Add(new PriorityPair<int>(3, 1));
+            Debug.Assert(pq.Count() == 3);
+            Debug.Assert(pq.Peek().Element == 2);
+            Debug.Assert(pq.Peek().Priority == 5);
+
+            pq.Add(new PriorityPair<int>(4, 1));
+            Debug.Assert(pq.Count() == 4);
+            Debug.Assert(pq.Peek().Element == 2);
+            Debug.Assert(pq.Peek().Priority == 5);
+
+            pq.Add(new PriorityPair<int>(5, 8));
+            Debug.Assert(pq.Count() == 5);
+            Debug.Assert(pq.Peek().Element == 5);
+            Debug.Assert(pq.Peek().Priority == 8);
+
+            pq.Add(new PriorityPair<int>(6, 2));
+            Debug.Assert(pq.Count() == 6);
+            Debug.Assert(pq.Peek().Element == 5);
+            Debug.Assert(pq.Peek().Priority == 8);
+
+            PriorityPair<int> p = pq.PopFront();
+            Debug.Assert(p.Element == 5);
+            Debug.Assert(p.Priority == 8);
+            Debug.Assert(pq.Count() == 5);
+            Debug.Assert(pq.Peek().Element == 2);
+            Debug.Assert(pq.Peek().Priority == 6);
+
+            pq.Remove(4);
+            Debug.Assert(pq.Count() == 4);
+            Debug.Assert(pq.Peek().Element == 2);
+            Debug.Assert(pq.Peek().Priority == 6);
+
+            pq.Remove(2);
+            Debug.Assert(pq.Count() == 3);
+            Debug.Assert(pq.Peek().Element == 1);
+            Debug.Assert(pq.Peek().Priority == 3);
+
+            p = pq.PopFront();
+            Debug.Assert(p.Element == 1);
+            Debug.Assert(p.Priority == 3);
+            Debug.Assert(pq.Count() == 2);
+            Debug.Assert(pq.Peek().Element == 3);
+            Debug.Assert(pq.Peek().Priority == 2);
+
+            pq.Remove(6);
+            Debug.Assert(pq.Count() == 1);
+            Debug.Assert(pq.Peek().Element == 3);
+            Debug.Assert(pq.Peek().Priority == 2);
+
+            p = pq.PopFront();
+            Debug.Assert(p.Element == 3);
+            Debug.Assert(p.Priority == 2);
+            Debug.Assert(pq.Count() == 0);
         }
     }
 }

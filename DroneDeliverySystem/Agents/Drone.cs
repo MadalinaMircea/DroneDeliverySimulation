@@ -27,7 +27,6 @@ namespace DroneDeliverySystem.Agents
 
         public Package package = null;
 
-        //private List<PackageRequest> requests = new List<PackageRequest>();
         private IncreasingPriorityQueue<PackageRequest> requests = new IncreasingPriorityQueue<PackageRequest>();
 
         private List<MovingObject> observers = new List<MovingObject>();
@@ -37,7 +36,6 @@ namespace DroneDeliverySystem.Agents
         {
             //writes the information to the screen
             GlobalInformation.WriteToConsole($"{Name} got message {message.Content}");
-            //The message is of the form "<type>-<message>"
             string[] msg = message.Content.Split('-');
             int receivedProducerId = Convert.ToInt32(msg[1].Trim());
             int receivedPackageId = Convert.ToInt32(msg[2].Trim());
@@ -119,16 +117,7 @@ namespace DroneDeliverySystem.Agents
         {
             //Removes a request from the list
             Monitor.Enter(requests);
-            //for(int i = 0; i < requests.Count(); i++)
-            //{
-            //    if(requests[i].ProducerID == producerId && requests[i].PackageID == packageId)
-            //    {
-            //        requests.RemoveAt(i);
-            //        break;
-            //    }
-            //}
-            requests.Remove(
-                new PriorityPair<PackageRequest>(new PackageRequest(producerId, packageId, new Position(0, 0)), 0));
+            requests.Remove(new PackageRequest(producerId, packageId, new Position(0, 0)));
             Monitor.Exit(requests);
         }
 
@@ -161,8 +150,6 @@ namespace DroneDeliverySystem.Agents
                 {
                     //Checks if the new position is within the space reachable by the drone
                     if(CurrentEnvironment.IsPositionWithinLimits(newPosition))
-                    //if (newPosition.X >= GlobalInformation.GetMinX() && newPosition.X <= GlobalInformation.GetMaxX() &&
-                    //    newPosition.Y >= GlobalInformation.GetMinY() && newPosition.Y <= GlobalInformation.GetMaxY())
                     {
                         GlobalInformation.WriteToConsole($"{Name} moving to {newPosition}");
 
@@ -209,15 +196,10 @@ namespace DroneDeliverySystem.Agents
                                     int packageId = requests.Peek().Element.PackageID;
                                     //picks up the package
                                     PickUpPackage();
+                                    //Sends a message to all the other drones that this drone
+                                    //has reached the package
                                     SendBroadcast(producerId, packageId);
 
-
-                                    ////Sends a message to all the other drones that this drone
-                                    ////has reached the package
-                                    //Thread t = new Thread(() => SendBroadcast(producerId, packageId));
-                                    //t.Start();
-
-                                    //t.Join();
                                 }
                                 else
                                 {
@@ -333,7 +315,6 @@ namespace DroneDeliverySystem.Agents
 
         private void StartThreads()
         {
-            //isAlive = true;
             movingThread.Start();
             messageHandlerThread.Start();
         }
@@ -346,7 +327,6 @@ namespace DroneDeliverySystem.Agents
 
         private void StopThreads()
         {
-            //isAlive = false;
             movingThread.Join();
             messageHandlerThread.Join();
         }
@@ -382,17 +362,9 @@ namespace DroneDeliverySystem.Agents
             return a.ID == ID;
         }
 
-        //public override void Pause()
-        //{
-        //    StopThreads();
-        //    CreateThreads();
-        //    base.Pause();
-        //}
-
-        //public override void Resume()
-        //{
-        //    StartThreads();
-        //    base.Resume();
-        //}
+        public override int GetHashCode()
+        {
+            return 624022166 + base.GetHashCode();
+        }
     }
 }

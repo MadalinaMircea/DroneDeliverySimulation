@@ -1,12 +1,7 @@
 ﻿using DroneDeliverySystem.Agents;
-using DroneDeliverySystem.Global;
 using DroneDeliverySystem.Messaging;
-using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DroneDeliverySystem
 {
@@ -17,8 +12,6 @@ namespace DroneDeliverySystem
         public AgentEnvironment CurrentEnvironment { get; set; }
 
         public AgentType Type { get; set; }
-
-        //public bool isAlive { get; set; }
 
         public void Broadcast(ACLPerformative performative, string content)
         {
@@ -40,12 +33,10 @@ namespace DroneDeliverySystem
 
         public virtual void Stop()
         {
-            //isAlive = false;
         }
 
         public virtual void Start()
         {
-            //isAlive = true;
         }
 
         public virtual void Send(AgentMessage message)
@@ -58,16 +49,6 @@ namespace DroneDeliverySystem
             CurrentEnvironment.AddMessage(new AgentMessage(performative, content, from, to));
         }
 
-        //public virtual void Pause()
-        //{
-        //    isAlive = false;
-        //}
-
-        //public virtual void Resume()
-        //{
-        //    isAlive = true;
-        //}
-
         public override bool Equals(object obj)
         {
             if (obj.GetType() != typeof(Agent))
@@ -79,6 +60,16 @@ namespace DroneDeliverySystem
             Agent a = (Agent)obj;
 
             return a.ID == ID;
+        }
+
+        public override int GetHashCode()
+        {
+            int hashCode = -259032398;
+            hashCode = hashCode * -1521134295 + ID.GetHashCode();
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Name);
+            hashCode = hashCode * -1521134295 + EqualityComparer<AgentEnvironment>.Default.GetHashCode(CurrentEnvironment);
+            hashCode = hashCode * -1521134295 + Type.GetHashCode();
+            return hashCode;
         }
     }
 }
