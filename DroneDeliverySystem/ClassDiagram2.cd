@@ -1,31 +1,31 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="DroneDeliverySystem.Agent" Collapsed="true">
-    <Position X="6.75" Y="3.5" Width="1.5" />
+    <Position X="3.75" Y="3.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAgAAAAACCAgAAAAEAAgAQAAAAAAAAAIQAAAAgAAgI=</HashCode>
+      <HashCode>AAAAAAAAACCAgAAAgEAAgAQAAAAAAIAAIQAAAAAAAgI=</HashCode>
       <FileName>Agents\Agent.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="DroneDeliverySystem.Form1" Collapsed="true">
-    <Position X="12" Y="1.5" Width="1.5" />
+    <Position X="13.25" Y="3" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAgAwCEIABAAAACAAYACAQAAACQAAAQAAABAIIA=</HashCode>
+      <HashCode>AAAAAAgAwCEIABAAAACAAYACAAAAACQAAAQAAABAIAA=</HashCode>
       <FileName>Form1.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="DroneDeliverySystem.Program" Collapsed="true">
-    <Position X="10.25" Y="3.5" Width="1.5" />
+    <Position X="17" Y="2" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
       <FileName>Program.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="DroneDeliverySystem.Agents.AgentEnvironment" Collapsed="true">
-    <Position X="10.25" Y="0.5" Width="1.5" />
+  <Class Name="DroneDeliverySystem.Agents.AgentEnvironment">
+    <Position X="7.25" Y="0.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAsEAAgAgEiAARAEAAAgAAAQAAEAAAAAAEAAQAAIAAA=</HashCode>
-      <FileName>Agents\AgentEnvironment.cs</FileName>
+      <HashCode>AAsEAAgAgEiQARAEAAAAAIAQAAEAAAAAAEAAQAAIAAA=</HashCode>
+      <FileName>Environment\AgentEnvironment.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="DroneDeliverySystem.Agents.AgentFactory">
@@ -36,9 +36,9 @@
     </TypeIdentifier>
   </Class>
   <Class Name="DroneDeliverySystem.Agents.Drone" Collapsed="true">
-    <Position X="5.5" Y="4.75" Width="1.5" />
+    <Position X="2.75" Y="6" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>gEAIAAAAAKBEABIkBAAAQEgAAQAAAAAAMAABUIEAkgA=</HashCode>
+      <HashCode>gEAIAAAAAqBEABIkhAAAQEgQAQAAAIAAMAIBUIEAkgA=</HashCode>
       <FileName>Agents\Drone.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -46,27 +46,27 @@
     <Position X="0.5" Y="6.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAQAAA=</HashCode>
-      <FileName>Agents\EnvironmentLimits.cs</FileName>
+      <FileName>Environment\EnvironmentLimits.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="DroneDeliverySystem.Agents.EnvironmentLimitsFactory">
     <Position X="7" Y="6.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Agents\EnvironmentLimitsFactory.cs</FileName>
+      <FileName>Environment\EnvironmentLimitsFactory.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="DroneDeliverySystem.Agents.PlaneEnvironmentLimits" Collapsed="true">
     <Position X="0.5" Y="7.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>MAAAAAAwAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAQAAA=</HashCode>
-      <FileName>Agents\PlaneEnvironmentLimits.cs</FileName>
+      <FileName>Environment\PlaneEnvironmentLimits.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="DroneDeliverySystem.Agents.Producer" Collapsed="true">
-    <Position X="7.75" Y="4.75" Width="1.5" />
+    <Position X="4.5" Y="5.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AQIsIQAgECAAAAAABAAA4AgAAAAAAQAAIAAAAAgJAAA=</HashCode>
+      <HashCode>AQIMIQAgEiAAAAAABAAA4AgQAAAAAQAAIAAAAAAJAAA=</HashCode>
       <FileName>Agents\Producer.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -99,21 +99,21 @@
     </TypeIdentifier>
   </Class>
   <Class Name="DroneDeliverySystem.Global.GlobalInformation" Collapsed="true">
-    <Position X="13.75" Y="1.5" Width="1.5" />
+    <Position X="15" Y="3" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AXpIAAgCAAIAACAEAAQgEBAAIIAAAAIQAAAAADCAAAA=</HashCode>
+      <HashCode>AXpoAAgCAAIACKAEAAAAEBAAIIAAAAIQAAAAADCAAAA=</HashCode>
       <FileName>Global\GlobalInformation.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="DroneDeliverySystem.Messaging.AgentMessage" Collapsed="true">
-    <Position X="13.75" Y="0.5" Width="1.5" />
+  <Class Name="DroneDeliverySystem.Messaging.AgentMessage">
+    <Position X="9" Y="0.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAgAAAAAAAAAAAAAAAAAEAAAAAIAAAAAIAAA=</HashCode>
       <FileName>Messaging\AgentMessage.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="DroneDeliverySystem.Messaging.MessageBlackboard" Collapsed="true">
-    <Position X="15.5" Y="1.5" Width="1.5" />
+  <Class Name="DroneDeliverySystem.Messaging.MessageBlackboard">
+    <Position X="10.75" Y="0.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAEAAAAAAAIAAAAAAAAAAABgAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Messaging\MessageBlackboard.cs</FileName>
@@ -142,19 +142,19 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="DroneDeliverySystem.Properties.Resources" Collapsed="true">
-    <Position X="12" Y="3.5" Width="1.5" />
+    <Position X="13.25" Y="5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAQEAAAAAAAAAAAAAABEAAAgQAAAAAAAAAAACAAAIA=</HashCode>
     </TypeIdentifier>
   </Class>
   <Class Name="DroneDeliverySystem.Properties.Settings" Collapsed="true">
-    <Position X="13.75" Y="3.5" Width="1.5" />
+    <Position X="15" Y="5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAABAAAAAAAAAAAAAAA=</HashCode>
     </TypeIdentifier>
   </Class>
   <Class Name="DroneDeliverySystem.Utils.Containers.PriorityPair&lt;T&gt;" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="13.75" Y="2.5" Width="1.5" />
+    <Position X="15" Y="4" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAQEAAgAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Utils\Containers\PriorityPair.cs</FileName>
@@ -162,7 +162,7 @@
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="DroneDeliverySystem.Utils.Containers.PriorityQueue&lt;T&gt;" Collapsed="true">
-    <Position X="15.5" Y="2.5" Width="1.5" />
+    <Position X="16.75" Y="4" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAIAAAAAAAAEABAAAAAABAQAAAAAAAAAAAAAAIAAAAA=</HashCode>
       <FileName>Utils\Containers\PriorityQueue.cs</FileName>
@@ -177,21 +177,21 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="DroneDeliverySystem.Utils.PackageRequest" Collapsed="true">
-    <Position X="10.25" Y="2.5" Width="1.5" />
+    <Position X="14.75" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AACAAAEAAAAAAAAAgAAAIAAAAAAAAIAAAAAAAAAAAAA=</HashCode>
       <FileName>Utils\PackageRequest.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="DroneDeliverySystem.Utils.Position" Collapsed="true">
-    <Position X="12" Y="2.5" Width="1.5" />
+    <Position X="13.25" Y="4" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAEAAEAAAAAAAAAAAAAAAAAAAAAYAA=</HashCode>
       <FileName>Utils\Position.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Interface Name="DroneDeliverySystem.MoveUtils.IMovement" Collapsed="true">
-    <Position X="10.25" Y="4.75" Width="1.5" />
+    <Position X="16.25" Y="6.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>MoveUtils\IMovement.cs</FileName>
@@ -208,13 +208,13 @@
     <Position X="13.75" Y="5.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAA=</HashCode>
-      <FileName>Agents\EnvironmentLimitsType.cs</FileName>
+      <FileName>Environment\EnvironmentLimitsType.cs</FileName>
     </TypeIdentifier>
   </Enum>
-  <Enum Name="DroneDeliverySystem.Messaging.ACLPerformative" Collapsed="true">
-    <Position X="10.25" Y="5.75" Width="1.5" />
+  <Enum Name="DroneDeliverySystem.Messaging.ACLPerformative">
+    <Position X="9" Y="3.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AQAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAgAAAAAA=</HashCode>
+      <HashCode>AQAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Messaging\ACLPerformative.cs</FileName>
     </TypeIdentifier>
   </Enum>
