@@ -19,6 +19,7 @@ namespace DroneDeliverySystem
         {
             InitializeComponent();
 
+            GlobalInformation.SetWinnerLabel(WinnerLabel);
             GlobalInformation.SetConsole(new DisplayConsole(console));
             GlobalInformation.CreateEnvironment();
             List<Producer> producers = GlobalInformation.CreateProducers(this);
@@ -32,7 +33,6 @@ namespace DroneDeliverySystem
             AddDisplayLine("Console");
             AddDisplayLine("Hello world");
 
-            PauseButton.Enabled = false;
             StopButton.Enabled = false;
             StartButton.Enabled = true;
 
@@ -118,27 +118,15 @@ namespace DroneDeliverySystem
         private void StartButton_Click(object sender, EventArgs e)
         {
             StartButton.Enabled = false;
-            PauseButton.Enabled = true;
             StopButton.Enabled = true;
             StartButton.Text = "Start";
-            PauseButton.Text = "Pause";
             GlobalInformation.StartAll();
-        }
-
-        private void PauseButton_Click(object sender, EventArgs e)
-        {
-            StartButton.Text = "Resume";
-            StartButton.Enabled = true;
-            PauseButton.Enabled = false;
-            StopButton.Enabled = false;
-            GlobalInformation.PauseAll();
         }
 
         private void StopButton_Click(object sender, EventArgs e)
         {
             StartButton.Enabled = false;
             StopButton.Enabled = false;
-            PauseButton.Enabled = false;
             GlobalInformation.StopAll();
         }
     }

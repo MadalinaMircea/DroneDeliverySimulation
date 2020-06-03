@@ -27,10 +27,11 @@ namespace DroneDeliverySystem.Agents
         public void Changed(bool newPackage, Producer producer, Package package)
         {
             int newPack = newPackage ? 1 : 0;
-            string content = $"1-{newPack}-{producer.position.X},{producer.position.Y}-{producer.ID}-{package.ID}";
+            //string content = $"1-{newPack}-{producer.position.X},{producer.position.Y}-{producer.ID}-{package.ID}";
+            string content = $"{producer.position.X},{producer.position.Y}-{producer.ID}-{package.ID}";
             foreach (Drone o in observers)
             {
-                Send(ACLPerformative.INFORM, ID, o.ID, content);
+                Send(ACLPerformative.REQUEST, ID, o.ID, content);
             }
 
             GlobalInformation.WriteToConsole("Producer " + ID + " " + content);
@@ -147,24 +148,39 @@ namespace DroneDeliverySystem.Agents
 
         public override void Stop()
         {
-            creatorThread.Join();
+            StopThreads();
             base.Stop();
         }
 
         public override void Start()
         {
+            StartThreads();
+            base.Start();
+        }
+
+        private void StartThreads()
+        {
+            //isAlive = true;
             creatorThread.Start();
         }
 
-        public override void Pause()
+        private void StopThreads()
         {
+            //isAlive = false;
             creatorThread.Join();
-            CreateThread();
         }
 
-        public override void Resume()
-        {
-            creatorThread.Start();
-        }
+        //public override void Pause()
+        //{
+        //    StopThreads();
+        //    CreateThread();
+        //    base.Pause();
+        //}
+
+        //public override void Resume()
+        //{
+        //    StartThreads();
+        //    base.Resume();
+        //}
     }
 }

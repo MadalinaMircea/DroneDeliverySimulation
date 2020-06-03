@@ -4,7 +4,9 @@ using DroneDeliverySystem.MoveUtils;
 using DroneDeliverySystem.Utils;
 using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Threading;
+using System.Windows.Forms;
 
 namespace DroneDeliverySystem.Global
 {
@@ -23,9 +25,10 @@ namespace DroneDeliverySystem.Global
         private static int maxY = 340;
 
         private static DisplayConsole displayConsole;
+        private static ChangingLabel winnerLabel;
         //private static Random globalRandom = new Random();
 
-        public static Dictionary<Producer, List<Package>> producerPackages = new Dictionary<Producer, List<Package>>();
+        public static Dictionary<int, List<Package>> producerPackages = new Dictionary<int, List<Package>>();
 
         private static AgentEnvironment Environment;
         private static List<Producer> producers;
@@ -109,46 +112,43 @@ namespace DroneDeliverySystem.Global
         {
             Monitor.Enter(producerPackages);
             AddProducer(producer);
-            producerPackages[producer].Add(package);
+            producerPackages[producer.GetID()].Add(package);
             Monitor.Exit(producerPackages);
         }
 
         private static void AddProducer(Producer producer)
         {
-            if (!producerPackages.ContainsKey(producer))
+            if (!producerPackages.ContainsKey(producer.GetID()))
             {
-                producerPackages[producer] = new List<Package>();
+                producerPackages[producer.GetID()] = new List<Package>();
             }
         }
 
-        private static Producer GetProducerById(int producerId)
-        {
-            foreach (Producer prod in producerPackages.Keys)
-            {
-                if (prod.ID == producerId)
-                {
-                    return prod;
-                }
-            }
-            return null;
-        }
+        //private static Producer GetProducerById(int producerId)
+        //{
+        //    foreach (int prod in producerPackages.Keys)
+        //    {
+        //        if (prod.ID == producerId)
+        //        {
+        //            return prod;
+        //        }
+        //    }
+        //    return null;
+        //}
 
         public static Package GetPackage(int producerId, int packageId)
         {
             Monitor.Enter(producerPackages);
-            Producer prod = GetProducerById(producerId);
+            //Producer prod = GetProducerById(producerId);
             Package pack = null;
 
-            if (prod != null)
+            for (int i = 0; i < producerPackages[producerId].Count && pack == null; i++)
             {
-                for (int i = 0; i < producerPackages[prod].Count && pack == null; i++)
+                if (producerPackages[producerId][i].ID == packageId)
                 {
-                    if (producerPackages[prod][i].ID == packageId)
-                    {
-                        pack = producerPackages[prod][i];
-                        producerPackages[prod].RemoveAt(i);
-                        break;
-                    }
+                    pack = producerPackages[producerId][i];
+                    producerPackages[producerId].RemoveAt(i);
+                    break;
                 }
             }
 
@@ -255,14 +255,24 @@ namespace DroneDeliverySystem.Global
             Environment.StartAll();
         }
 
-        public static void PauseAll()
-        {
-            Environment.PauseAll();
-        }
+        //public static void PauseAll()
+        //{
+        //    Environment.PauseAll();
+        //}
 
         public static void StopAll()
         {
             Environment.StopAll();
+        }
+
+        public static void SetWinner(string name)
+        {
+            winnerLabel.SetName(name);
+        }
+        
+        public static void SetWinnerLabel(Label label)
+        {
+            winnerLabel = new ChangingLabel(label);
         }
     }
 }

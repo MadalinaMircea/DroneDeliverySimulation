@@ -6,11 +6,7 @@ using DroneDeliverySystem.Utils;
 using DroneDeliverySystem.Utils.Containers;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace DroneDeliverySystem.Agents
 {
@@ -32,7 +28,7 @@ namespace DroneDeliverySystem.Agents
         public Package package = null;
 
         //private List<PackageRequest> requests = new List<PackageRequest>();
-        private PriorityQueue<PackageRequest> requests = new PriorityQueue<PackageRequest>();
+        private IncreasingPriorityQueue<PackageRequest> requests = new IncreasingPriorityQueue<PackageRequest>();
 
         private List<MovingObject> observers = new List<MovingObject>();
 
@@ -43,54 +39,38 @@ namespace DroneDeliverySystem.Agents
             GlobalInformation.WriteToConsole($"{Name} got message {message.Content}");
             //The message is of the form "<type>-<message>"
             string[] msg = message.Content.Split('-');
-            string type = msg[0].Trim();
+            int receivedProducerId = Convert.ToInt32(msg[1].Trim());
+            int receivedPackageId = Convert.ToInt32(msg[2].Trim());
+            Position pos = new Position(msg[0]);
 
-            switch (type)
+            switch (message.Performative)
             {
-                case "1":
-                    //A message of the form "1-<<newP>-<posX, posY>-<prodId>-<packId>" is
-                    //new information about a package
-                    string newPackage = msg[1].Trim();
-                    int receivedProducerId = Convert.ToInt32(msg[3].Trim());
-                    int receivedPackageId = Convert.ToInt32(msg[4].Trim());
-                    Position pos = new Position(msg[2]);
-
-                    switch (newPackage)
+                case ACLPerformative.REQUEST:
+                    //There is a new package
+                    AddRequest(new PackageRequest(receivedProducerId, receivedPackageId, pos));
+                    if (IsAvailable)
                     {
-                        case "0":
-                            //if newPackage is 0, then the package represented by the received
-                            //IDs has been picked up by another drone
-                            RemoveRequest(receivedProducerId, receivedPackageId);
-                            if (package == null)
-                            {
-                                if (requests.Count() == 0)
-                                {
-                                    //if the drone has no more requests, it stops moving
-                                    StopMoving();
-                                }
-                                else
-                                {
-                                    //if it has requests, it moves towards the first request in the list
-                                    Move(requests.Peek().Element.position);
-                                }
-                            }
-                            break;
-                        case "1":
-                            //if newPackage is 1, a new package was created
-                            //so the drone adds the information to the requests list
-                            AddRequest(new PackageRequest(receivedProducerId, receivedPackageId, pos));
-                            //requests.Add();
-                            if (IsAvailable)
-                            {
-                                //if the drone is not currently delivering a package
-                                //it starts moving towards the appropriate request
-                                Move(requests.Peek().Element.position);
-                            }
-                            break;
+                        //if the drone is not currently delivering a package
+                        //it starts moving towards the appropriate request
+                        Move(requests.Peek().Element.position);
                     }
                     break;
-                case "2":
-                    //A message of the form "2-<message>" means the drones are communicating with each other
+                case ACLPerformative.INFORM:
+                    //The new package was picked up by another drone
+                    RemoveRequest(receivedProducerId, receivedPackageId);
+                    if (package == null)
+                    {
+                        if (requests.Count() == 0)
+                        {
+                            //if the drone has no more requests, it stops moving
+                            StopMoving();
+                        }
+                        else
+                        {
+                            //if it has requests, it moves towards the first request in the list
+                            Move(requests.Peek().Element.position);
+                        }
+                    }
                     break;
             }
         }
@@ -264,7 +244,7 @@ namespace DroneDeliverySystem.Agents
         {
             //Sends a message to all of the drones that this drone
             //reached a specific parcel
-            Broadcast(ACLPerformative.INFORM, $"1-0-0,0-{producerId}-{packageId}");
+            Broadcast(ACLPerformative.INFORM, $"0,0-{producerId}-{packageId}");
         }
         public void Move(Position newPosition)
         {
@@ -337,6 +317,7 @@ namespace DroneDeliverySystem.Agents
             package = null;
             IsAvailable = true;
             GlobalInformation.WriteToConsole($"{Name} released package");
+            CurrentEnvironment.AddPoints(this, 1);
         }
         public override void Stop()
         {
@@ -352,6 +333,7 @@ namespace DroneDeliverySystem.Agents
 
         private void StartThreads()
         {
+            //isAlive = true;
             movingThread.Start();
             messageHandlerThread.Start();
         }
@@ -364,6 +346,7 @@ namespace DroneDeliverySystem.Agents
 
         private void StopThreads()
         {
+            //isAlive = false;
             movingThread.Join();
             messageHandlerThread.Join();
         }
@@ -387,10 +370,29 @@ namespace DroneDeliverySystem.Agents
             CreateThreads();
         }
 
-        public override void Pause()
+        public override bool Equals(object obj)
         {
-            StopThreads();
-            CreateThreads();
+            if (obj.GetType() != typeof(Drone))
+            {
+                return false;
+            }
+
+            Drone a = (Drone)obj;
+
+            return a.ID == ID;
         }
+
+        //public override void Pause()
+        //{
+        //    StopThreads();
+        //    CreateThreads();
+        //    base.Pause();
+        //}
+
+        //public override void Resume()
+        //{
+        //    StartThreads();
+        //    base.Resume();
+        //}
     }
 }

@@ -8,29 +8,22 @@ namespace DroneDeliverySystem.Utils.Containers
 {
     class PriorityQueue<T>
     {
-        List<PriorityPair<T>> elements;
+        protected List<PriorityPair<T>> elements;
 
         public PriorityQueue()
         {
-            this.elements = new List<PriorityPair<T>>();
+            elements = new List<PriorityPair<T>>();
         }
 
-        public PriorityQueue(int limit)
-        {
-        }
-
-        public void Add(PriorityPair<T> t)
+        public virtual int Add(PriorityPair<T> t)
         {
             int i = 0;
             while (i < elements.Count && elements[i].Priority + 1 >= t.Priority)
                 i++;
 
-            for (int j = i; j < elements.Count; j++)
-            {
-                elements[i].Priority++;
-            }
-
             elements.Insert(i, t);
+
+            return i;
         }
 
         public int Count()

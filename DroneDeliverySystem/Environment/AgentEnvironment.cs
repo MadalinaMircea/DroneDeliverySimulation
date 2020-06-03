@@ -1,4 +1,6 @@
-﻿using DroneDeliverySystem.Messaging;
+﻿using DroneDeliverySystem.Behaviour;
+using DroneDeliverySystem.Global;
+using DroneDeliverySystem.Messaging;
 using DroneDeliverySystem.Utils;
 using System;
 using System.Collections.Generic;
@@ -19,6 +21,7 @@ namespace DroneDeliverySystem.Agents
         EnvironmentLimitsFactory environmentLimitsFactory = new EnvironmentLimitsFactory();
         Random rnd = new Random();
         MessageBlackboard blackboard = new MessageBlackboard();
+        Competition competition = new Competition();
 
         public AgentEnvironment(int minX = -1, int maxX = -1, int minY = -1, int maxY = -1, int minZ = -1, int maxZ = -1)
         {
@@ -32,6 +35,19 @@ namespace DroneDeliverySystem.Agents
             
             Monitor.Exit(blackboard);
         }
+
+        public void AddPoints(Agent a, int p)
+        {
+            Monitor.Enter(competition);
+            competition.AddPoints(a, p);
+            GlobalInformation.SetWinner(competition.GetWinners());
+            Monitor.Exit(competition);
+        }
+
+        //public Agent GetWinner()
+        //{
+        //    return competition.GetWinner();
+        //}
 
         public AgentMessage GetNextMessage(int agentId)
         {
@@ -79,6 +95,7 @@ namespace DroneDeliverySystem.Agents
             Agent a = agentFactory.CreateAgent(agentType, GetNextId(), n, limits.GeneratePosition(rnd), rnd);
             a.CurrentEnvironment = this;
             agents.Add(a);
+            //competition.AddAgent(a);
             return a;
         }
 
@@ -90,13 +107,13 @@ namespace DroneDeliverySystem.Agents
             }
         }
 
-        public void PauseAll()
-        {
-            foreach(Agent a in agents)
-            {
-                a.Pause();
-            }
-        }
+        //public void PauseAll()
+        //{
+        //    foreach(Agent a in agents)
+        //    {
+        //        a.Pause();
+        //    }
+        //}
 
         public void StopAll()
         {

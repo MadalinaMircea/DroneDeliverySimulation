@@ -33,10 +33,9 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.background = new System.Windows.Forms.PictureBox();
             this.StartButton = new System.Windows.Forms.Button();
-            this.PauseButton = new System.Windows.Forms.Button();
             this.StopButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.WinnerLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.background)).BeginInit();
@@ -107,18 +106,6 @@
             this.StartButton.UseVisualStyleBackColor = false;
             this.StartButton.Click += new System.EventHandler(this.StartButton_Click);
             // 
-            // PauseButton
-            // 
-            this.PauseButton.BackColor = System.Drawing.Color.Cyan;
-            this.PauseButton.Font = new System.Drawing.Font("Berlin Sans FB", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PauseButton.Location = new System.Drawing.Point(1145, 260);
-            this.PauseButton.Name = "PauseButton";
-            this.PauseButton.Size = new System.Drawing.Size(165, 47);
-            this.PauseButton.TabIndex = 10;
-            this.PauseButton.Text = "Pause";
-            this.PauseButton.UseVisualStyleBackColor = false;
-            this.PauseButton.Click += new System.EventHandler(this.PauseButton_Click);
-            // 
             // StopButton
             // 
             this.StopButton.BackColor = System.Drawing.Color.Salmon;
@@ -141,26 +128,25 @@
             this.label1.TabIndex = 12;
             this.label1.Text = "Winning:";
             // 
-            // label2
+            // WinnerLabel
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Berlin Sans FB", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.MediumPurple;
-            this.label2.Location = new System.Drawing.Point(1181, 580);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(90, 37);
-            this.label2.TabIndex = 13;
-            this.label2.Text = "None";
+            this.WinnerLabel.AutoSize = true;
+            this.WinnerLabel.Font = new System.Drawing.Font("Berlin Sans FB", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.WinnerLabel.ForeColor = System.Drawing.Color.MediumPurple;
+            this.WinnerLabel.Location = new System.Drawing.Point(1181, 580);
+            this.WinnerLabel.Name = "WinnerLabel";
+            this.WinnerLabel.Size = new System.Drawing.Size(90, 37);
+            this.WinnerLabel.TabIndex = 13;
+            this.WinnerLabel.Text = "None";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1322, 724);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.WinnerLabel);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.StopButton);
-            this.Controls.Add(this.PauseButton);
             this.Controls.Add(this.StartButton);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.pictureBox1);
@@ -182,10 +168,9 @@
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button StartButton;
-        private System.Windows.Forms.Button PauseButton;
         private System.Windows.Forms.Button StopButton;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label WinnerLabel;
     }
 }
 

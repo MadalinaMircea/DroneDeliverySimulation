@@ -47,15 +47,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Agents\Agent.cs" />
-    <Compile Include="Agents\AgentEnvironment.cs" />
+    <Compile Include="DisplayUtils\ChangingLabel.cs" />
+    <Compile Include="Environment\AgentEnvironment.cs" />
     <Compile Include="Agents\AgentFactory.cs" />
     <Compile Include="Agents\AgentType.cs" />
     <Compile Include="Agents\Drone.cs" />
-    <Compile Include="Agents\EnvironmentLimits.cs" />
-    <Compile Include="Agents\EnvironmentLimitsFactory.cs" />
-    <Compile Include="Agents\EnvironmentLimitsType.cs" />
-    <Compile Include="Agents\PlaneEnvironmentLimits.cs" />
+    <Compile Include="Environment\EnvironmentLimits.cs" />
+    <Compile Include="Environment\EnvironmentLimitsFactory.cs" />
+    <Compile Include="Environment\EnvironmentLimitsType.cs" />
+    <Compile Include="Environment\PlaneEnvironmentLimits.cs" />
     <Compile Include="Agents\Producer.cs" />
+    <Compile Include="Behaviour\Competition.cs" />
     <Compile Include="DisplayUtils\AgentIcon.cs" />
     <Compile Include="DisplayUtils\DisplayConsole.cs" />
     <Compile Include="DisplayUtils\MovingObject.cs" />
@@ -81,6 +83,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Utils\Containers\IncreasingPriorityQueue.cs" />
     <Compile Include="Utils\Containers\PriorityPair.cs" />
     <Compile Include="Utils\Containers\PriorityQueue.cs" />
     <Compile Include="Utils\Package.cs" />
